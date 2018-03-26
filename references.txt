@@ -1,0 +1,56 @@
+php artisan --version
+======================================================
+// Instead of this
+$table->increments('id');
+
+// You can use these
+$table->unsignedInteger('id');
+$table->primary('id');
+
+https://scotch.io/tutorials/automatically-format-laravel-database-fields-with-accessors-and-mutators
+
+==============================================================================
+composer require "laravelcollective/html":"^5.4.0"
+
+		'Form' => Collective\Html\FormFacade::class,
+		'Html' => Collective\Html\HtmlFacade::class,	
+		
+		Collective\Html\HtmlServiceProvider::class,		
+==============================================================================
+
+    strtolower() - converts a string to lowercase.
+    lcfirst() - converts the first character of a string to lowercase.
+    ucfirst() - converts the first character of a string to uppercase.
+    ucwords() - converts the first character of each word in a string to uppercase.		
+		
+		
+@if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
+
+=================================================================================
+class Person extends Model
+{
+    protected $table = 'people';
+
+    protected $primaryKey = 'id';       // as long as the primary column name is "id", this line is not required actually
+
+    public $timestamps = true;
+
+    protected $fillable = [
+        'name',
+        'person_code'
+    ];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($model) {
+            $model->person_code = str_pad($model->getKey(), 4, '0', STR_PAD_LEFT);
+        });
+    }
+}
+============================================================================
