@@ -1,4 +1,8 @@
 <?php
+use App\subcategory;
+use Illuminate\Http\Request;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +18,12 @@
 Route::get('/', function () {
     return view('index');
 });
+Route::get('/getitem', function(Request $req) {
+	$data = subcategory::where('name', 'LIKE', '%'.$req->name.'%')->get();
+    return Response::json($data);
+});
 Route::get('admin', 'AdminController@index');
+Route::resource('req', 'ReqController', ['parameters'=>['req'=>'id']]);
 Route::resource('group', 'GroupController', ['parameters'=>['group'=>'id']]);
 Route::resource('family', 'FamilyController', ['parameters'=>['family'=>'id']]);
 Route::resource('category', 'CategoryController', ['parameters'=>['category'=>'id']]);

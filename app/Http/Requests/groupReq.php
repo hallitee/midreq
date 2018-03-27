@@ -25,8 +25,9 @@ class groupReq extends FormRequest
     {
         return [
             //
-			'grpName'=>'required',
 			'name'=>'unique:groups',
+			'grpName'=>'required',
+			
         ];
     }
 

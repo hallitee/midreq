@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\group;
+use App\req;
+use App\category;
 use Illuminate\Http\Request;
-use App\Http\Requests\groupReq;
 
-class GroupController extends Controller
+class ReqController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,7 @@ class GroupController extends Controller
     public function index()
     {
         //
-		$grp = group::paginate(5);
-		return view('group.list')->with('url', $grp);
+
     }
 
     /**
@@ -28,8 +27,12 @@ class GroupController extends Controller
     public function create()
     {
         //
-		
-		return view('group.index');
+		$list = category::all();
+		$cat=[];
+		foreach($list as $l){
+			$cat[$l->id] = $l->id.' '.$l->name;
+		}
+		return view('req.index')->with('cat', $cat);
     }
 
     /**
@@ -41,19 +44,15 @@ class GroupController extends Controller
     public function store(Request $request)
     {
         //
-		$grp = new group;
-		$grp->name = strtoupper($request->grpName);
-		$grp->save();
-		return redirect('group')->with('status', ucfirst($grp->name).' created successfully');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\group  $group
+     * @param  \App\req  $req
      * @return \Illuminate\Http\Response
      */
-    public function show(group $group)
+    public function show(req $req)
     {
         //
     }
@@ -61,48 +60,34 @@ class GroupController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\group  $group
+     * @param  \App\req  $req
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request)
+    public function edit(req $req)
     {
         //
-		$grp = group::find($request->id);
-		return view('group.edit')->with('grp', $grp);
-		
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\group  $group
+     * @param  \App\req  $req
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, req $req)
     {
         //
-			$grp = group::find($request->id);
-			if($request->has('grpName')){
-				$grp->name = $request->grpName;
-			}
-			$grp->save();
-		    return redirect('group')->with('status', $grp->name.' updated Successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\group  $group
+     * @param  \App\req  $req
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $req)
+    public function destroy(req $req)
     {
         //
-        $l = group::find($req->id);
-        $m = $l;
-        $l->delete();
-        return redirect('group')->with('status', $m->name.' deleted Successfully');		
-		
     }
 }

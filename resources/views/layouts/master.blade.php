@@ -49,7 +49,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">MID CODE</a>
+                <a class="navbar-brand" href="{{url('/')}}">MID CODE</a>
             </div>
             <!-- /.navbar-header -->
 @section('navright')
@@ -161,15 +161,7 @@
 			@show
         </nav>
 @yield('body')
-        @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+
     </div>
     <!-- /#wrapper -->
 

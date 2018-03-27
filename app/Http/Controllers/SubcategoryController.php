@@ -31,7 +31,7 @@ class SubcategoryController extends Controller
 		$list = [];
 		$grp = category::all();
 		foreach($grp as $key=>$g){
-			$list[$g->id] = $g->name;
+			$list[$g->id] = $g->id.' '.$g->name;
 		}
 		return view('subcat.index')->with('sub', $list);
     }
@@ -45,6 +45,26 @@ class SubcategoryController extends Controller
     public function store(Request $request)
     {
         //
+		if($request->has('catName')){
+		$str = preg_split("/[;]+/", $request->catName);
+		$strid = preg_split("/[;]+/", $request->catId);
+		}	
+		if(count($str)>1){
+		foreach($str as $key=>$s){		
+		$cat = new subcategory;
+		$cat->name = strtoupper($s);
+		$cat->cat_id = $request->catGrp;
+		if(array_key_exists($key, $strid) && $key!=0){
+		$cat->id = (int)$strid[$key];
+		}
+		else{
+		$cat->id = subcategory::with('category')->where('cat_id', $request->catGrp)->count()+1;
+		}
+		$cat->save();
+		}
+		$cat->name = implode(",", $str);
+		}
+		else{
 		$cat = new subcategory;
 		$cat->name = strtoupper($request->catName);
 		$cat->cat_id = $request->catGrp;
@@ -53,8 +73,9 @@ class SubcategoryController extends Controller
 		}
 		else{
 		$cat->id = subcategory::with('category')->where('cat_id', $request->catGrp)->count()+1;
-		}
+		}			
 		$cat->save();
+		}		
 		return redirect('subcategory')->with('status',$cat->name.' subcategory created successfully');		
     }
 
@@ -81,7 +102,7 @@ class SubcategoryController extends Controller
 		$list = [];
 		$grp = family::all();
 		foreach($grp as $key=>$g){
-			$list[$g->id] = $g->name;
+			$list[$g->id] = $g->id.' '.$g->name;
 		}		
 		$cat = subcategory::find($id);
 		return view('subcat.edit')->with(['cat'=>$cat, 'fam'=>$list]);			
@@ -110,7 +131,7 @@ class SubcategoryController extends Controller
      * @param  \App\subcategory  $subcategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(subcategory $subcategory)
+    public function destroy(Request $request)
     {
         //
 		$cat = subcategory::find($request->id);

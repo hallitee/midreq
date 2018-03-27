@@ -275,6 +275,13 @@ class ComposerStaticInit0b1f6a1b1ba8f0569af1447c272fc7ea
                 0 => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src',
             ),
         ),
+        'F' => 
+        array (
+            'Flynsarmy\\CsvSeeder\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/flynsarmy/csv-seeder/src',
+            ),
+        ),
         'D' => 
         array (
             'Doctrine\\Common\\Inflector\\' => 
@@ -302,6 +309,7 @@ class ComposerStaticInit0b1f6a1b1ba8f0569af1447c272fc7ea
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Http\\Requests\\groupReq' => __DIR__ . '/../..' . '/app/Http/Requests/groupReq.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
@@ -312,6 +320,7 @@ class ComposerStaticInit0b1f6a1b1ba8f0569af1447c272fc7ea
         'App\\category' => __DIR__ . '/../..' . '/app/category.php',
         'App\\family' => __DIR__ . '/../..' . '/app/family.php',
         'App\\group' => __DIR__ . '/../..' . '/app/group.php',
+        'App\\req' => __DIR__ . '/../..' . '/app/req.php',
         'App\\subcategory' => __DIR__ . '/../..' . '/app/subcategory.php',
         'ArithmeticError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
         'AssertionError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/AssertionError.php',
@@ -330,6 +339,7 @@ class ComposerStaticInit0b1f6a1b1ba8f0569af1447c272fc7ea
         'CreateFamiliesTable' => __DIR__ . '/../..' . '/database/migrations/2018_03_26_083018_create_families_table.php',
         'CreateGroupsTable' => __DIR__ . '/../..' . '/database/migrations/2018_03_26_083013_create_groups_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+        'CreateReqsTable' => __DIR__ . '/../..' . '/database/migrations/2018_03_27_113138_create_reqs_table.php',
         'CreateSubcategoriesTable' => __DIR__ . '/../..' . '/database/migrations/2018_03_26_092337_create_subcategories_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
         'Cron\\AbstractField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/AbstractField.php',
@@ -819,6 +829,8 @@ class ComposerStaticInit0b1f6a1b1ba8f0569af1447c272fc7ea
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',
         'File_Iterator_Factory' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Factory.php',
+        'Flynsarmy\\CsvSeeder\\CsvSeeder' => __DIR__ . '/..' . '/flynsarmy/csv-seeder/src/Flynsarmy/CsvSeeder/CsvSeeder.php',
+        'Flynsarmy\\CsvSeeder\\CsvSeederServiceProvider' => __DIR__ . '/..' . '/flynsarmy/csv-seeder/src/Flynsarmy/CsvSeeder/CsvSeederServiceProvider.php',
         'Hamcrest\\Arrays\\IsArray' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Arrays/IsArray.php',
         'Hamcrest\\Arrays\\IsArrayContaining' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Arrays/IsArrayContaining.php',
         'Hamcrest\\Arrays\\IsArrayContainingInAnyOrder' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Arrays/IsArrayContainingInAnyOrder.php',
@@ -3324,6 +3336,7 @@ class ComposerStaticInit0b1f6a1b1ba8f0569af1447c272fc7ea
         'TypeError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/TypeError.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'XdgBaseDir\\Xdg' => __DIR__ . '/..' . '/dnoegel/php-xdg-base-dir/src/Xdg.php',
+        'categorySeeder' => __DIR__ . '/../..' . '/database/seeds/categorySeeder.php',
         'phpDocumentor\\Reflection\\DocBlock' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock.php',
         'phpDocumentor\\Reflection\\DocBlockFactory' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactory.php',
         'phpDocumentor\\Reflection\\DocBlockFactoryInterface' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactoryInterface.php',

@@ -31,7 +31,7 @@ class CategoryController extends Controller
 		$list = [];
 		$grp = family::all();
 		foreach($grp as $key=>$g){
-			$list[$g->id] = $g->name;
+			$list[$g->id] = $g->id.' '.$g->name;
 		}
 		return view('category.index')->with('cat', $list);
     }
@@ -45,8 +45,13 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+		if($request->has('catName')){
+		$str = preg_split("/[;,]+/", $request->catName);
+		}
+		if(count($str)>1){
+		foreach($str as $s){
 		$cat = new category;
-		$cat->name = strtoupper($request->catName);
+		$cat->name = strtoupper($s);
 		$cat->family_id = $request->catGrp;
 		if($request->has('catId')){
 		$cat->id = $request->catId;
@@ -55,6 +60,22 @@ class CategoryController extends Controller
 		$cat->id = category::with('family')->where('family_id', $request->catGrp)->count()+1;
 		}
 		$cat->save();
+		}
+		$cat->name = implode(",", $str);
+		}
+		else{
+		$cat = new category;
+		$cat->name = strtoupper($request->catName);
+		$cat->family_id = $request->catGrp;
+		if($request->has('catId')){
+		$cat->id = $request->catId;
+		}
+		else{
+		$cat->id = category::with('family')->where('family_id', $request->catGrp)->count()+1;
+		}			
+			
+		$cat->save();
+		}
 		return redirect('category')->with('status',$cat->name.' category created successfully');		
     }
 
@@ -81,7 +102,7 @@ class CategoryController extends Controller
 		$list = [];
 		$grp = family::all();
 		foreach($grp as $key=>$g){
-			$list[$g->id] = $g->name;
+			$list[$g->id] =$g->id.' '.$g->name;
 		}		
 		$cat = category::find($id);
 		return view('category.edit')->with(['cat'=>$cat, 'fam'=>$list]);		

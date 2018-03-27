@@ -31,7 +31,7 @@ class FamilyController extends Controller
 		$list = [];
 		$grp = group::all();
 		foreach($grp as $key=>$g){
-			$list[$g->id] = $g->name;
+			$list[$g->id] = $g->id.' '.$g->name;
 		}
 		return view('family.index')->with('grp', $list);
     }
@@ -44,10 +44,7 @@ class FamilyController extends Controller
      */
     public function store(Request $request)
     {
-        //
-		$validatedData = $request->validate([
-        'famName' => 'bail|required|unique:family|max:255',
-		]);
+
 		$fam = new family;
 		$fam->name = strtoupper($request->famName);
 		$fam->group_id = $request->famGrp;
@@ -79,7 +76,7 @@ class FamilyController extends Controller
 		$list = [];
 		$grp = group::all();
 		foreach($grp as $key=>$g){
-			$list[$g->id] = $g->name;
+			$list[$g->id] =  $g->id.' '.$g->name;
 		}		
 		$fam = family::find($id);
 		return view('family.edit')->with(['fam'=>$fam, 'grp'=>$list]);

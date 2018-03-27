@@ -7,6 +7,56 @@ $(function() {
     $('#side-menu').metisMenu();
 });
 
+
+ $(document).ready(function(){	
+
+ console.log("started");
+$("body").on('click', '.sltList', function(){
+	console.log($(this).text());
+	$("#myUL").hide();
+	 var txt;
+    if (confirm("The item is already created.")) {
+        txt = "You pressed OK!";
+    } else {
+        txt = "You pressed Cancel!";
+    }
+	$("#itemType").val($(this).text());
+	
+});
+ 
+$("#itemType").on('keyup', function(){
+	  name = $(this).val(); 
+	  Ulist = $("#myUL");
+	 console.log(name.length);
+	 if(name.length>1){
+	 				$.ajax({
+					type: 'GET',
+					url: "/getitem",
+					dataType: 'JSON',
+					beforeSend: function(xhr)
+					{xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+					data: {
+					"name":name,
+					},                                                                                             
+					error: function( xhr ){ 
+					// alert("ERROR ON SUBMIT");
+					console.log("error on submit"+xhr);
+					},
+					success: function( data ){ 
+					console.log("success "+ data);
+					Ulist.empty();
+					Ulist.show();
+					$.each(data, function(i, list){
+					Ulist.append("<li class='sltList'><a href='#'>"+ list.id + ' - '+list.name +"</a></li>")
+					});
+					}
+				});
+	 }
+	// $("#myUL").append("<li class='sltList'><a href='#'>Taofik</a></li>");
+	 console.log($(this).val());
+ });
+ 
+ });
 //Loads the correct sidebar on window load,
 //collapses the sidebar on window resize.
 // Sets the min-height of #page-wrapper to window size
