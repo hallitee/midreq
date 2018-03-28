@@ -1,3 +1,9 @@
+
+https://hackernoon.com/how-to-use-queue-in-laravel-5-4-for-email-verification-3617527a7dbf
+======================================================
+
+https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_filter_list
+===========================================================
 php artisan --version
 ======================================================
 // Instead of this
@@ -54,3 +60,73 @@ class Person extends Model
     }
 }
 ============================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+================================================================
+always the way we want it to be.
+
+<?php
+
+// app/User.php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class User extends Model {
+
+    /**
+     * Always json_decode settings so they are usable
+     */
+    public function getSettingsAttribute($value) {
+        return json_decode($value);
+
+        // you could always make sure you get an array returned also
+        // return json_decode($value, true);
+    }
+
+    /**
+     * Always json_encode the settings when saving to the database
+     */
+    public function setSettingsAttribute($value) {
+        $this->attributes['settings'] = json_encode($value);
+    }
+
+}
+
+
+}

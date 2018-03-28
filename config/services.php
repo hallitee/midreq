@@ -34,5 +34,8 @@ return [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
-
+    'emailsrvr' => [
+        'domain' => env('smtp.emailsrvr.com'),
+        'secret' => env('Secret_1'),
+    ],
 ];

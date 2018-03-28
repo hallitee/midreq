@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\req;
 use App\category;
 use Illuminate\Http\Request;
+use Auth;
+use Illuminate\Support\Facades\Mail;
+use App\mail\NewRequestEmail;
 
 class ReqController extends Controller
 {
@@ -44,6 +47,16 @@ class ReqController extends Controller
     public function store(Request $request)
     {
         //
+		
+		$r = new Req;
+		$r->item_type = $request->itemType;
+		$r->descr = $request->itemDesc;
+		$r->mat_type = $request->matType;
+		$r->brand = $request->brand;
+		$r->user_id = Auth::user()->id;
+		$r->save();
+		Mail::to(Auth::user()->email)->send(new NewRequestEmail($r));
+		return redirect('home')->with('status', 'MID Request for '.$r->name.' created successfully');
     }
 
     /**

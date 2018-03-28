@@ -292,6 +292,8 @@ class ComposerStaticInit0b1f6a1b1ba8f0569af1447c272fc7ea
     );
 
     public static $classMap = array (
+        'AddCompanyToUsers' => __DIR__ . '/../..' . '/database/migrations/2018_03_28_094338_add_company_to_users.php',
+        'AddUserToReqs' => __DIR__ . '/../..' . '/database/migrations/2018_03_28_132333_add_user_to_reqs.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminController.php',
@@ -303,8 +305,10 @@ class ComposerStaticInit0b1f6a1b1ba8f0569af1447c272fc7ea
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\FamilyController' => __DIR__ . '/../..' . '/app/Http/Controllers/FamilyController.php',
         'App\\Http\\Controllers\\GroupController' => __DIR__ . '/../..' . '/app/Http/Controllers/GroupController.php',
+        'App\\Http\\Controllers\\ReqController' => __DIR__ . '/../..' . '/app/Http/Controllers/ReqController.php',
         'App\\Http\\Controllers\\SubcategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/SubcategoryController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
+        'App\\Http\\Middleware\\AdminMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/AdminMiddleware.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
@@ -336,8 +340,10 @@ class ComposerStaticInit0b1f6a1b1ba8f0569af1447c272fc7ea
         'Collective\\Html\\HtmlFacade' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlFacade.php',
         'Collective\\Html\\HtmlServiceProvider' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlServiceProvider.php',
         'CreateCategoriesTable' => __DIR__ . '/../..' . '/database/migrations/2018_03_26_084224_create_categories_table.php',
+        'CreateFailedJobsTable' => __DIR__ . '/../..' . '/database/migrations/2018_03_28_134253_create_failed_jobs_table.php',
         'CreateFamiliesTable' => __DIR__ . '/../..' . '/database/migrations/2018_03_26_083018_create_families_table.php',
         'CreateGroupsTable' => __DIR__ . '/../..' . '/database/migrations/2018_03_26_083013_create_groups_table.php',
+        'CreateJobsTable' => __DIR__ . '/../..' . '/database/migrations/2018_03_28_134242_create_jobs_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreateReqsTable' => __DIR__ . '/../..' . '/database/migrations/2018_03_27_113138_create_reqs_table.php',
         'CreateSubcategoriesTable' => __DIR__ . '/../..' . '/database/migrations/2018_03_26_092337_create_subcategories_table.php',

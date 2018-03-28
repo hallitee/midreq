@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','admin','company'
     ];
 
     /**
@@ -26,4 +26,35 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+	    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($model) {
+            $p = explode('@',$model->email);
+			$q = explode('.', $p[1]);
+			switch($q[0]){
+				case "natural-prime":
+				$model->company = 'NPRNL';
+				break;
+				case "esrnl":
+				$model->company = 'ESRNL';
+				break;
+				case "primerafood-nigeria":
+				$model->company = 'PFNL';
+				break;	
+				default :
+				$model->company = '';
+				break;					
+			}
+        });
+    }	
+
+		public function isAdmin(){
+		
+		return $this->admin;
+	}
+	
+	
+	
 }

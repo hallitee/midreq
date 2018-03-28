@@ -6,6 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddCompanyToUsers' => $baseDir . '/database/migrations/2018_03_28_094338_add_company_to_users.php',
+    'AddUserToReqs' => $baseDir . '/database/migrations/2018_03_28_132333_add_user_to_reqs.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\AdminController' => $baseDir . '/app/Http/Controllers/AdminController.php',
@@ -17,8 +19,10 @@ return array(
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\FamilyController' => $baseDir . '/app/Http/Controllers/FamilyController.php',
     'App\\Http\\Controllers\\GroupController' => $baseDir . '/app/Http/Controllers/GroupController.php',
+    'App\\Http\\Controllers\\ReqController' => $baseDir . '/app/Http/Controllers/ReqController.php',
     'App\\Http\\Controllers\\SubcategoryController' => $baseDir . '/app/Http/Controllers/SubcategoryController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
+    'App\\Http\\Middleware\\AdminMiddleware' => $baseDir . '/app/Http/Middleware/AdminMiddleware.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',
     'App\\Http\\Middleware\\RedirectIfAuthenticated' => $baseDir . '/app/Http/Middleware/RedirectIfAuthenticated.php',
     'App\\Http\\Middleware\\TrimStrings' => $baseDir . '/app/Http/Middleware/TrimStrings.php',
@@ -50,8 +54,10 @@ return array(
     'Collective\\Html\\HtmlFacade' => $vendorDir . '/laravelcollective/html/src/HtmlFacade.php',
     'Collective\\Html\\HtmlServiceProvider' => $vendorDir . '/laravelcollective/html/src/HtmlServiceProvider.php',
     'CreateCategoriesTable' => $baseDir . '/database/migrations/2018_03_26_084224_create_categories_table.php',
+    'CreateFailedJobsTable' => $baseDir . '/database/migrations/2018_03_28_134253_create_failed_jobs_table.php',
     'CreateFamiliesTable' => $baseDir . '/database/migrations/2018_03_26_083018_create_families_table.php',
     'CreateGroupsTable' => $baseDir . '/database/migrations/2018_03_26_083013_create_groups_table.php',
+    'CreateJobsTable' => $baseDir . '/database/migrations/2018_03_28_134242_create_jobs_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreateReqsTable' => $baseDir . '/database/migrations/2018_03_27_113138_create_reqs_table.php',
     'CreateSubcategoriesTable' => $baseDir . '/database/migrations/2018_03_26_092337_create_subcategories_table.php',
