@@ -16,7 +16,17 @@
 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">New MID Request</h1>
+                    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+					<h1 class="page-header">New MID Request</h1>
+					
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -37,7 +47,7 @@
 						<label for="id_select"  class="control-label col-md-4  requiredField">Item Description<span class="asteriskField">*</span> </label>
 						<div class="controls col-md-5 "  style="margin-bottom: 10px">
 						{!! Form::textarea('itemDesc',"",array('class' => 'input-md form-control', 'placeholder'=>'120mm &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Blue &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 240V &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  2KVA', 'id'=>'itemDesc', 'size'=>'20x5')); !!}
-						<i>Each shoudl be on seperate lines</i>
+						<i>Each description should be on seperate lines</i>
 						</div>	
 					</div>
 						<div id="div_id_select" class="form-group required">
@@ -62,8 +72,11 @@
 			-->					
 						<div id="div_id_select" class="form-group required">
 						<label for="id_select"  class="control-label col-md-4  requiredField"><span class="asteriskField"></span> </label>
-						<div class="controls col-md-8 "  style="margin-bottom: 10px">
+						<div class="controls col-md-3 "  style="margin-bottom: 10px">
 						{!! Form::submit('SUBMIT', array('class'=>'btn btn-info')); !!}
+						</div>	
+						<div class="controls col-md-2 "  style="margin-bottom: 10px">
+						<a href="{{route('home')}}"><button type="button" class="btn btn-info">BACK</button></a>
 						</div>						
 					</div>
 

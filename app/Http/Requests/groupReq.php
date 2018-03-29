@@ -25,16 +25,15 @@ class groupReq extends FormRequest
     {
         return [
             //
-			'name'=>'unique:groups',
-			'grpName'=>'required',
+			'itemType'=>'required',
 			
         ];
     }
 
 	public function messages(){
 		return[
-		'grpName.required'=>'Group name field require',
-		'name.unique'=>'Duplicate name should be unique',
+		'itemType.required'=>'Item Type is required, shouldn\'t be empty.',
+		
 		];
 	}	
 }

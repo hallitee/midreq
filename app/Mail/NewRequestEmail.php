@@ -18,11 +18,12 @@ class NewRequestEmail extends Mailable
      *
      * @return void
      */
-	 public $req;
-    public function __construct(req $b)
+	 public $req, $user;
+    public function __construct(req $b, $c)
     {
         //
 		$this->req = $b;
+		$this->user = $c;
     }
 
     /**
@@ -37,6 +38,6 @@ class NewRequestEmail extends Mailable
 		$subject = 'MID REQUEST';
         return $this->view('email.newreq')
 					->from($address, $name)
-					->subject($subject)->with(['req'=>$this->req]);
+					->subject($subject)->with(['req'=>$this->req, 'user'=>$this->user]);
     }
 }

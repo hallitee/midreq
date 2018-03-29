@@ -2,15 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\req;
+use App\User;
 use App\category;
 use Illuminate\Http\Request;
 use Auth;
+use App\Http\Requests\groupReq;
 use Illuminate\Support\Facades\Mail;
 use App\mail\NewRequestEmail;
+use App\Jobs\SendNewRequestEmail;
 
 class ReqController extends Controller
 {
+	
+	public function __construct()
+    {
+       $this->middleware(['auth']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -44,7 +53,7 @@ class ReqController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(groupReq $request)
     {
         //
 		
@@ -55,8 +64,10 @@ class ReqController extends Controller
 		$r->brand = $request->brand;
 		$r->user_id = Auth::user()->id;
 		$r->save();
-		Mail::to(Auth::user()->email)->send(new NewRequestEmail($r));
-		return redirect('home')->with('status', 'MID Request for '.$r->name.' created successfully');
+		$u = User::where('id', Auth::user()->id)->first();
+		dispatch(new SendNewRequestEmail($r, $u));
+		//Mail::to('hallitee_2005@yahoo.com')->send(new NewRequestEmail($r, Auth::user()));
+		return redirect('home')->with('status', 'MID Request for '.$r->item_type.' created successfully');
     }
 
     /**

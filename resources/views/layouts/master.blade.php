@@ -106,6 +106,18 @@
                             <a href="#"><i class="fa fa-wrench fa-fw"></i>Master Config<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
+                                    <a href="#"> Config Email <span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a href="{{ route('config.create') }}">Create Email</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('config.index') }}">Manage Emails</a>
+                                        </li>
+                                    </ul>
+                                    <!-- /.nav-third-level -->
+                                </li>                            
+							<li>
                                     <a href="#"> Add Group <span class="fa arrow"></span></a>
                                     <ul class="nav nav-third-level">
                                         <li>
@@ -166,6 +178,7 @@
             <!-- /.navbar-static-side -->
 			@show
         </nav>
+		
 @yield('body')
 
     </div>

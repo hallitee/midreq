@@ -3,6 +3,7 @@ use App\subcategory;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Mailable;
 use App\mail\NewRequestEmail;
+use App\req;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,10 +17,11 @@ use App\mail\NewRequestEmail;
 */
 Route::get('/mailable', function () {
     $invoice = "hallitee_2005@yahoo.com";
-
+	$user =Auth::user();
+	$req = req::where('id', 16)->first();
 	
-	return (new App\Mail\NewRequestEmail($invoice));
-   // return view('email.newreq')->with('user', $invoice);
+	//return (new App\Mail\NewRequestEmail($invoice));
+    return view('email.newreq')->with(['user'=>$user, 'req'=>$req]);
 });
 Route::get('/', function () {
     return view('index');
@@ -29,6 +31,7 @@ Route::get('/getitem', function(Request $req) {
     return Response::json($data);
 });
 Route::get('admin', 'AdminController@index');
+Route::resource('config', 'ConfigController', ['parameters'=>['config'=>'id']]);
 Route::resource('req', 'ReqController', ['parameters'=>['req'=>'id']]);
 Route::resource('group', 'GroupController', ['parameters'=>['group'=>'id']]);
 Route::resource('family', 'FamilyController', ['parameters'=>['family'=>'id']]);

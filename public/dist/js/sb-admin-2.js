@@ -15,13 +15,15 @@ $("body").on('click', '.sltList', function(){
 	console.log($(this).text());
 	$("#myUL").hide();
 	 var txt;
-    if (confirm("The item is already created.")) {
+    if (confirm("The item is already created. Do you want to stop creating new MID Request.")) {
         txt = "You pressed OK!";
+		window.location = "/home";
+		
     } else {
         txt = "You pressed Cancel!";
     }
 	$("#itemType").val($(this).text());
-	
+	console.log(txt);
 });
  
 $("#itemType").on('keyup', function(){

@@ -10,7 +10,7 @@
 					{{ session('status') }}
 				</div>
 			@endif
-                    <h1 class="page-header">NEW MID SEARCH</h1>
+                    <h1 class="page-header">MID SEARCH</h1>
 					
                 </div>
                 <!-- /.col-lg-12 -->
