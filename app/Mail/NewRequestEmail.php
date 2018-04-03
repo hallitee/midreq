@@ -8,6 +8,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\config;
 
 class NewRequestEmail extends Mailable
 {
@@ -18,12 +19,13 @@ class NewRequestEmail extends Mailable
      *
      * @return void
      */
-	 public $req, $user;
-    public function __construct(req $b, $c)
+	 public $req, $user, $conf;
+    public function __construct(req $b, $c, $d)
     {
         //
 		$this->req = $b;
 		$this->user = $c;
+		$this->conf = $d;
     }
 
     /**
@@ -33,10 +35,16 @@ class NewRequestEmail extends Mailable
      */
     public function build()
     {
+		$cemail = [];
+			if($this->copi->copi!=null || $this->copi->copi!=""){
+				//array_push($cemail, $this->copi->copi);
+				$cemail = preg_split("/[;,\s]+/", $this->config->hod);
+			}		
         $address = 'helpdesk@esrnl.com';
 		$name = 'MID CODE REQUEST';
-		$subject = 'MID REQUEST';
+		$subject = 'NEW MID REQUEST';
         return $this->view('email.newreq')
+					->cc($ccemail)
 					->from($address, $name)
 					->subject($subject)->with(['req'=>$this->req, 'user'=>$this->user]);
     }

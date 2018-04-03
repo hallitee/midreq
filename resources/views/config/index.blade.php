@@ -37,7 +37,7 @@
 						</div>	
 					</div>
 						<div id="div_id_select" class="form-group required">
-						<label for="id_select"  class="control-label col-md-4  requiredField">Category<span class="asteriskField"></span> </label>
+						<label for="id_select"  class="control-label col-md-4  requiredField">Company<span class="asteriskField"></span> </label>
 						<div class="controls col-md-5 "  style="margin-bottom: 10px">
 						{!! Form::select('company',['ESRNL'=>'ESRNL', 'EUROMEGA'=>'EUROMEGA', 'GSNL'=>'GSNL', 'NPRNL'=>'NPRNL','PFNL'=> 'PFNL'],'',array( 'class' => 'input-md form-control', 'id'=>'lnkUrl')); !!}
 						</div>	

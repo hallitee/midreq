@@ -16,7 +16,7 @@
 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Manage Categories</h1>
+                    <h1 class="page-header">Manage Emails</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -28,7 +28,7 @@
 					{{ session('status') }}
 				</div>
 			@endif
-				@include('subcat.listings')
+				@include('config.listings')
 			</div>	
             </div>
             <!-- /.row -->

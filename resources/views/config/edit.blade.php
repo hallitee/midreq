@@ -22,30 +22,37 @@
             </div>
             <!-- /.row -->
             <div class="row">
-{!! Form::open(['action' => array('CategoryController@update', $cat->id),'method'=>'PUT']) !!}
-					<div class="col-lg-8 col-md-8 col-md-offset-3">
+			{!! Form::open(['action' => array('ConfigController@update', $c->id),'method'=>'PUT']) !!}
+					<div class="col-lg-8 col-md-8 col-md-offset-2">
 						<div id="div_id_select" class="form-group required">
-						<label for="id_select"  class="control-label col-md-4  requiredField">Group Name<span class="asteriskField">*</span> </label>
+						<label for="id_select"  class="control-label col-md-4  requiredField">MID Creator Email<span class="asteriskField">*</span> </label>
 						<div class="controls col-md-5 "  style="margin-bottom: 10px">
-						{!! Form::text('catName',$cat->name,array('class' => 'input-md form-control', 'id'=>'lnkName')); !!}
+						{!! Form::text('email',$c->creator,array('class' => 'input-md form-control', 'id'=>'lnkName')); !!}
+						</div>	
+					</div>					
+						<div id="div_id_select" class="form-group required">
+						<label for="id_select"  class="control-label col-md-4  requiredField">HOD Email<span class="asteriskField">*</span> </label>
+						<div class="controls col-md-5 "  style="margin-bottom: 10px">
+						{!! Form::text('hod',$c->hod,array('class' => 'input-md form-control', 'id'=>'lnkName')); !!}
 						</div>	
 					</div>
 						<div id="div_id_select" class="form-group required">
-						<label for="id_select"  class="control-label col-md-4  requiredField">Group<span class="asteriskField"></span> </label>
+						<label for="id_select"  class="control-label col-md-4  requiredField">Company<span class="asteriskField"></span> </label>
 						<div class="controls col-md-5 "  style="margin-bottom: 10px">
-						{!! Form::select('catFam',$fam,$cat->family_id,array( 'class' => 'input-md form-control', 'id'=>'lnkUrl')); !!}
+						{!! Form::select('company',['ESRNL'=>'ESRNL', 'EUROMEGA'=>'EUROMEGA', 'GSNL'=>'GSNL', 'NPRNL'=>'NPRNL','PFNL'=> 'PFNL'],$c->company,array( 'class' => 'input-md form-control', 'id'=>'lnkUrl')); !!}
 						</div>	
-					</div>			
+					</div>				
 						<div id="div_id_select" class="form-group required">
 						<label for="id_select"  class="control-label col-md-4  requiredField"><span class="asteriskField"></span> </label>
 						<div class="controls col-md-8 "  style="margin-bottom: 10px">
-						{!! Form::submit('UPDATE', array('class'=>'btn btn-info')); !!}
+						{!! Form::submit('Update', array('class'=>'btn btn-info')); !!}
 						</div>						
 					</div>
 
 						{!! Form::close() !!}
 				</div>
             </div>
+            <!-- /.row -->
             <!-- /.row -->
 
         </div>

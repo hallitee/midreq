@@ -12,7 +12,7 @@ use App\Http\Requests\groupReq;
 use Illuminate\Support\Facades\Mail;
 use App\mail\NewRequestEmail;
 use App\Jobs\SendNewRequestEmail;
-
+use App\config;
 class ReqController extends Controller
 {
 	
@@ -65,7 +65,8 @@ class ReqController extends Controller
 		$r->user_id = Auth::user()->id;
 		$r->save();
 		$u = User::where('id', Auth::user()->id)->first();
-		dispatch(new SendNewRequestEmail($r, $u));
+		$conf = config::where('company', '=', $u->company)->first();
+		dispatch(new SendNewRequestEmail($r, $u, $conf));
 		//Mail::to('hallitee_2005@yahoo.com')->send(new NewRequestEmail($r, Auth::user()));
 		return redirect('home')->with('status', 'MID Request for '.$r->item_type.' created successfully');
     }

@@ -15,6 +15,8 @@ class ConfigController extends Controller
     public function index()
     {
         //
+		$c = config::paginate(10);
+		return view('config.list')->with(['url'=>$c]);
     }
 
     /**
@@ -42,7 +44,7 @@ class ConfigController extends Controller
 		$con->hod = $request->hod;
 		$con->company = $request->company;
 		$con->save();
-		return redirect('home')->with('status', "Saved successfully");
+		return redirect('home')->with('status', "Created successfully");
     }
 
     /**
@@ -62,9 +64,11 @@ class ConfigController extends Controller
      * @param  \App\config  $config
      * @return \Illuminate\Http\Response
      */
-    public function edit(config $config)
+    public function edit($id)
     {
         //
+		$c = config::find($id);
+		return view('config.edit')->with('c', $c);
     }
 
     /**
@@ -77,6 +81,12 @@ class ConfigController extends Controller
     public function update(Request $request, config $config)
     {
         //
+		$c = config::find($request->id);
+		$c->creator = $request->email;
+		$c->hod = $request->hod;
+		$c->company = $request->company;
+		$c->save();
+		return redirect('config')->with('status', 'Updated successfully');
     }
 
     /**
@@ -85,8 +95,11 @@ class ConfigController extends Controller
      * @param  \App\config  $config
      * @return \Illuminate\Http\Response
      */
-    public function destroy(config $config)
+    public function destroy(Request $req)
     {
         //
+		$r = config::find($req->id);
+		$r->delete();
+		return redirect('config')->with('status', 'Deleted successfully');
     }
 }
