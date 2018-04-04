@@ -26,10 +26,7 @@ Route::get('/mailable', function () {
 Route::get('/', function () {
     return view('index');
 })->middleware('auth');
-Route::get('/getitem', function(Request $req) {
-	$data = subcategory::where('name', 'LIKE', '%'.$req->name.'%')->get();
-    return Response::json($data);
-});
+Route::get('/getitem', 'SubcategoryController@getitem');
 Route::get('admin', 'AdminController@index');
 Route::resource('config', 'ConfigController', ['parameters'=>['config'=>'id']]);
 Route::resource('req', 'ReqController', ['parameters'=>['req'=>'id']]);

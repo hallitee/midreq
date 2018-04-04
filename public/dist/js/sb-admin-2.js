@@ -30,7 +30,7 @@ $("#itemType").on('keyup', function(){
 	  name = $(this).val(); 
 	  Ulist = $("#myUL");
 	 console.log(name.length);
-	 if(name.length>1){
+	 if(name.length>3){
 	 				$.ajax({
 					type: 'GET',
 					url: "/getitem",
@@ -46,10 +46,17 @@ $("#itemType").on('keyup', function(){
 					},
 					success: function( data ){ 
 					console.log("success "+ data);
+					//var datas = JSON.parse(data);
+					
+					$.each(data, function(i, list){
+						console.log(" i ", i);
+						console.log(" list ", list.ENTITYCODE);
+					});
+				 
 					Ulist.empty();
 					Ulist.show();
 					$.each(data, function(i, list){
-					Ulist.append("<li class='sltList'><a href='#'>"+ list.id + ' - '+list.name +"</a></li>")
+					Ulist.append("<li class='sltList'><a href='#'>"+ list.ITEMCODE + ' - '+list.ITEMNAME +"</a></li>")
 					});
 					}
 				});

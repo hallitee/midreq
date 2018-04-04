@@ -6,6 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddApproverToReqsTable' => $baseDir . '/database/migrations/2018_04_04_103054_add_approver_to_reqs_table.php',
+    'AddApproverToUsersTable' => $baseDir . '/database/migrations/2018_04_04_101830_add_approver_to_users_table.php',
     'AddCompanyToUsers' => $baseDir . '/database/migrations/2018_03_28_094338_add_company_to_users.php',
     'AddUserToReqs' => $baseDir . '/database/migrations/2018_03_28_132333_add_user_to_reqs.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
@@ -16,6 +18,7 @@ return array(
     'App\\Http\\Controllers\\Auth\\RegisterController' => $baseDir . '/app/Http/Controllers/Auth/RegisterController.php',
     'App\\Http\\Controllers\\Auth\\ResetPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ResetPasswordController.php',
     'App\\Http\\Controllers\\CategoryController' => $baseDir . '/app/Http/Controllers/CategoryController.php',
+    'App\\Http\\Controllers\\ConfigController' => $baseDir . '/app/Http/Controllers/ConfigController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\FamilyController' => $baseDir . '/app/Http/Controllers/FamilyController.php',
     'App\\Http\\Controllers\\GroupController' => $baseDir . '/app/Http/Controllers/GroupController.php',
@@ -39,6 +42,7 @@ return array(
     'App\\admin' => $baseDir . '/app/admin.php',
     'App\\category' => $baseDir . '/app/category.php',
     'App\\config' => $baseDir . '/app/config.php',
+    'App\\dbo' => $baseDir . '/app/dbo.OITM_SP.php',
     'App\\family' => $baseDir . '/app/family.php',
     'App\\group' => $baseDir . '/app/group.php',
     'App\\req' => $baseDir . '/app/req.php',

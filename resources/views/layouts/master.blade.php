@@ -94,7 +94,7 @@
 	
 			@show
 @section('navleft')
-		@if((Auth::check()) && Auth::user()->isAdmin())
+	
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
@@ -102,6 +102,7 @@
                         <li>
                             <a href="{{ url('home') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
+						@if((Auth::check()) && Auth::user()->isAdmin())						
 						<li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i>Master Config<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -165,6 +166,27 @@
                                     </ul>
                                     <!-- /.nav-third-level -->
                                 </li>	
+								@elseif((Auth::check()) && Auth::user()->isApprover())
+                                <li>
+                                    <a href="#">Requests<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a href="{{ route('req.index') }}">Approve Requests</a>
+                                        </li>
+                                    </ul>
+                                    <!-- /.nav-third-level -->
+                                </li>	
+								@else	
+                                <li>
+                                    <a href="#">Requests<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a href="{{ route('req.index') }}">View Requests</a>
+                                        </li>
+                                    </ul>
+                                    <!-- /.nav-third-level -->
+                                </li>										
+								@endif								
 
                             </ul>
                             <!-- /.nav-second-level -->
@@ -174,7 +196,7 @@
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
-			@endif
+
             <!-- /.navbar-static-side -->
 			@show
         </nav>

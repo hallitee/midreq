@@ -42,6 +42,7 @@ class SendNewRequestEmail implements ShouldQueue
     public function handle()
     {
        // echo "Success";
+	   echo $this->config->creator;
 		Mail::to($this->config->creator)->send(new NewRequestEmail($this->req, $this->user, $this->config));
     }
 }

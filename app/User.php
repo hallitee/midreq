@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','admin','company'
+        'name', 'email', 'password','admin','company','approver', 'role'
     ];
 
     /**
@@ -55,6 +55,11 @@ class User extends Authenticatable
 		return $this->admin;
 	}
 	
-	
-	
+		public function isApprover(){
+		
+		return $this->approver;
+	}	
+	public function requests(){
+		return $this->hasMany('App\req');
+	}
 }

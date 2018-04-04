@@ -16,19 +16,28 @@
 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Manage Categories</h1>
+ @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif				
+                    <h1 class="page-header">Request List</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
-			<div class="col-lg-9 col-md-9 col-md-offset-1">
+			<div class="col-lg-12 col-md-12 ">
 			@if (session('status'))
 				<div class="alert alert-success">
 					{{ session('status') }}
 				</div>
 			@endif
-				@include('subcat.listings')
+				@include('req.listings')
 			</div>	
             </div>
             <!-- /.row -->

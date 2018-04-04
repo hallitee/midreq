@@ -292,6 +292,8 @@ class ComposerStaticInit0b1f6a1b1ba8f0569af1447c272fc7ea
     );
 
     public static $classMap = array (
+        'AddApproverToReqsTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_04_103054_add_approver_to_reqs_table.php',
+        'AddApproverToUsersTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_04_101830_add_approver_to_users_table.php',
         'AddCompanyToUsers' => __DIR__ . '/../..' . '/database/migrations/2018_03_28_094338_add_company_to_users.php',
         'AddUserToReqs' => __DIR__ . '/../..' . '/database/migrations/2018_03_28_132333_add_user_to_reqs.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
@@ -302,6 +304,7 @@ class ComposerStaticInit0b1f6a1b1ba8f0569af1447c272fc7ea
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\CategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/CategoryController.php',
+        'App\\Http\\Controllers\\ConfigController' => __DIR__ . '/../..' . '/app/Http/Controllers/ConfigController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\FamilyController' => __DIR__ . '/../..' . '/app/Http/Controllers/FamilyController.php',
         'App\\Http\\Controllers\\GroupController' => __DIR__ . '/../..' . '/app/Http/Controllers/GroupController.php',
@@ -325,6 +328,7 @@ class ComposerStaticInit0b1f6a1b1ba8f0569af1447c272fc7ea
         'App\\admin' => __DIR__ . '/../..' . '/app/admin.php',
         'App\\category' => __DIR__ . '/../..' . '/app/category.php',
         'App\\config' => __DIR__ . '/../..' . '/app/config.php',
+        'App\\dbo' => __DIR__ . '/../..' . '/app/dbo.OITM_SP.php',
         'App\\family' => __DIR__ . '/../..' . '/app/family.php',
         'App\\group' => __DIR__ . '/../..' . '/app/group.php',
         'App\\req' => __DIR__ . '/../..' . '/app/req.php',

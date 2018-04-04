@@ -20,7 +20,7 @@ class NewRequestEmail extends Mailable
      * @return void
      */
 	 public $req, $user, $conf;
-    public function __construct(req $b, $c, $d)
+    public function __construct(req $b,User $c,config $d)
     {
         //
 		$this->req = $b;
@@ -36,15 +36,15 @@ class NewRequestEmail extends Mailable
     public function build()
     {
 		$cemail = [];
-			if($this->copi->copi!=null || $this->copi->copi!=""){
+			if($this->conf->hod!=null || $this->conf->hod!=""){
 				//array_push($cemail, $this->copi->copi);
-				$cemail = preg_split("/[;,\s]+/", $this->config->hod);
+				$cemail = preg_split("/[;,\s]+/", $this->conf->hod);
 			}		
         $address = 'helpdesk@esrnl.com';
 		$name = 'MID CODE REQUEST';
 		$subject = 'NEW MID REQUEST';
         return $this->view('email.newreq')
-					->cc($ccemail)
+					->cc($cemail)
 					->from($address, $name)
 					->subject($subject)->with(['req'=>$this->req, 'user'=>$this->user]);
     }

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\subcategory;
 use App\category;
 use Illuminate\Http\Request;
-
+use Auth;
 class SubcategoryController extends Controller
 {
     /**
@@ -115,6 +115,30 @@ class SubcategoryController extends Controller
      * @param  \App\subcategory  $subcategory
      * @return \Illuminate\Http\Response
      */
+    public function getitem(Request $req)
+    {
+		$entity = '';
+		$user = Auth::user()->company;
+		switch($user){
+			case 'NPRNL':
+			$entity = "01-234-002";
+			break;
+			case 'ESRNL':
+			$entity = "01-234-001";
+			break;
+			case 'PFNL':
+			$entity = "01-234-003";
+			break;
+		}
+			
+	
+    $data = subcategory::where('entitycode', '=', $entity)->where('itemname', 'LIKE', '%'.$req->name.'%')->get();
+	//return Response::json($data);		
+	//echo $data;
+	//exit();
+	//return json_encode($data);
+	return response()->json($data);
+    }	 
     public function update(Request $request)
     {
         //

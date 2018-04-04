@@ -3,15 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\category; 
+use App\dbo.OITM_SP; 
 
 
-class subcategory extends Model
+class dbo.OITM_SP extends Model
 {
 	protected $connection = 'sqlsrv';
 	
 	protected $primarykey = 'ITEMCODE';
-	 protected $table = 'dbo.OITM_SP';
+	
 	protected $fillable = [
         'entitycode', 'itemcode', 'itemname','itemgroup','u_it_subcat', 'u_it_cat', 'u_it_fam', 'u_it_grp'
     ];

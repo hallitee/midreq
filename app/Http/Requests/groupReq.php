@@ -26,6 +26,7 @@ class groupReq extends FormRequest
         return [
             //
 			'itemType'=>'required',
+			'itemDesc'=>'required',
 			
         ];
     }
@@ -33,6 +34,7 @@ class groupReq extends FormRequest
 	public function messages(){
 		return[
 		'itemType.required'=>'Item Type is required, shouldn\'t be empty.',
+		'itemDesc.required'=>'Please describe item, can\'t be blank',
 		
 		];
 	}	
