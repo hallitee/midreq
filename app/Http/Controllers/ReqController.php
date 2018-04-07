@@ -12,13 +12,15 @@ use App\Http\Requests\groupReq;
 use Illuminate\Support\Facades\Mail;
 use App\mail\NewRequestEmail;
 use App\Jobs\SendNewRequestEmail;
+use App\Jobs\sendApprovalNotificationEmail;
 use App\config;
 class ReqController extends Controller
 {
 	
 	public function __construct()
     {
-       $this->middleware(['auth']);
+		//$this->middleware('auth', ['except' => ['show','update']]);
+       $this->middleware('auth')->except(['update', 'show', 'index']);
     }
     /**
      * Display a listing of the resource.
@@ -29,7 +31,12 @@ class ReqController extends Controller
     {
         //
 		$creator = config::where('company', Auth::user()->company)->first();
-		$req = req::with('user')->where('catname', Auth::user()->company)->paginate(10);
+		if(Auth::user()->isApprover() || Auth::user()->isAdmin()){
+		$req = req::with('user')->where('catname', Auth::user()->company)->orderby('created_at', 'desc')->paginate(20);
+		}
+		else{
+		$req = req::with('user')->where('catname', Auth::user()->company)->where('user_id', Auth::user()->id)->orderby('created_at', 'desc')->paginate(20);
+		}
 		return view('req.list')->with(['url'=>$req, 'crt'=>$creator]);
 
     }
@@ -68,9 +75,9 @@ class ReqController extends Controller
 		$r->user_id = Auth::user()->id;
 		$r->catname = Auth::user()->company;
 		$r->save();
-		//$u = User::where('id', Auth::user()->id)->first();
-		//$conf = config::where('company', '=', $u->company)->first();
-		//dispatch(new SendNewRequestEmail($r, $u, $conf));
+		$u = User::where('id', Auth::user()->id)->first();
+		$conf = User::where('company', '=', $u->company)->where('approver', 1)->first();
+		dispatch(new SendNewRequestEmail($r, $u, $conf));
 		//Mail::to('hallitee_2005@yahoo.com')->send(new NewRequestEmail($r, Auth::user()));
 		return redirect('home')->with('status', 'MID Request for '.$r->item_type.' created successfully');
     }
@@ -81,11 +88,47 @@ class ReqController extends Controller
      * @param  \App\req  $req
      * @return \Illuminate\Http\Response
      */
-    public function show(req $req)
+    public function show(Request $req)
     {
         //
+		echo "Trueest ";
+		
+		$this->emailApp($req);
     }
+	    public function emailApp(Request $req)
+    {
+        //
+		if($req->has('approver')){
+		$user = user::where('approver', 1)->where('id', $req->approver)->first();
+		$request = req::with('user')->where('id', $req->id)->first();
+		$conf = config::where('company', $user->company)->first();
+		if($request->approved == 0){
+		$request->approved = $req->approval;	
+		$request->approver = $user->id;
+		$request->appr_name = $user->name;
+		$request->appr_date = Carbon::now()->format('Y-m-d H:i:s');
+		$request->save();
+		if($req->approval == 1){
+		$conf = config::where('company', $req->user->company)->first();
+		$u = User::where('id',$req->user_id)->first();
+		$conf = config::where('company', '=', $u->company)->first();
+		dispatch(new sendApprovalNotificationEmail($req, $user, $conf));
+		return redirect('req')->with('status', 'Approved successfully, MID Creator will be notified through Email');
+										}
+				else{
+				return redirect('req')->with('status', 'Request Not Approved');	
+					}	
+			}else{
+			return redirect('req')->with('status', 'Request closed by '.$req->appr_name.' on '.$req->appr_date);	
+			}		
+			
+		}
+		else{
+			return redirect('req')->with('status', 'Not authorized to approve request');	
+		}
 
+	
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -110,21 +153,64 @@ class ReqController extends Controller
     public function update(Request $request)
     {
         //
-		$user = Auth::user();
-		$req = req::find($request->id);
-		if(Auth::user()->isApprover() || Auth::user()->isAdmin()){
-		if($request->has('approval')){
+		if($request->has('approver')){
+		$user = user::where('approver', 1)->where('id', $request->approver)->first();
+		$req = req::with('user')->where('id', $request->id)->first();
+		$conf = config::where('company', $user->company)->first();
+		if($req->approved == 0){
 		$req->approved = $request->approval;	
 		$req->approver = $user->id;
 		$req->appr_name = $user->name;
 		$req->appr_date = Carbon::now()->format('Y-m-d H:i:s');
-		}
-		}
 		$req->save();
+		if($request->approval == 1){
+		$conf = config::where('company', $req->user->company)->first();
 		$u = User::where('id',$req->user_id)->first();
 		$conf = config::where('company', '=', $u->company)->first();
-		dispatch(new SendNewRequestEmail($req, $u, $conf));
+		dispatch(new sendApprovalNotificationEmail($req, $user, $conf));
 		return redirect('req')->with('status', 'Approved successfully, MID Creator will be notified through Email');
+										}
+				else{
+				return redirect('req')->with('status', 'Request Not Approved');	
+					}	
+			}else{
+			return redirect('req')->with('status', 'Request closed by '.$req->appr_name.' on '.$req->appr_date);	
+			}			
+			
+			
+		}
+		else{
+		$user = Auth::user();
+		$req = req::with('user')->find($request->id);
+		if(Auth::user()->isApprover() || Auth::user()->isAdmin()){
+		if($request->has('approval')){
+		if($req->approved == 0){
+		$req->approved = $request->approval;	
+		$req->approver = $user->id;
+		$req->appr_name = $user->name;
+		$req->appr_date = Carbon::now()->format('Y-m-d H:i:s');
+		$req->save();
+			if($request->approval == 1){
+		$conf = config::where('company', $req->user->company)->first();
+		$u = User::where('id',$req->user_id)->first();
+		$conf = config::where('company', '=', $u->company)->first();
+		dispatch(new sendApprovalNotificationEmail($req, $user, $conf));
+		return redirect('req')->with('status', 'Approved successfully, MID Creator will be notified through Email');
+										}
+				else{
+				return redirect('req')->with('status', 'Request Not Approved');	
+					}	
+			}else{
+			return redirect('req')->with('status', 'Request closed by '.$req->appr_name.' on '.$req->appr_date);	
+			}	
+									}
+		}
+		else{
+			return redirect('req')->with('status', 'Unauthorized to change request');	
+			
+		}
+		}
+	
     }
 
     /**

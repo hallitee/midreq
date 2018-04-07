@@ -18,10 +18,10 @@ $desc = explode("\r\n", $req->descr)
 <head></head>
 <body style="background: white; color: black">
 
-<h3>NEW MID CODE REQUEST</h3>
+<h3>NEW MID CODE CREATION</h3>
 <p>
-New MID creation request awaiting approval, please check MID monitor for duplication
-once approved MID creator will be notified.
+New MID creation request has been approved, please check MID monitor for duplication before 
+creating MID. 
 </p>
 <table class='table2' style="width:30%">
 <thead>
@@ -44,14 +44,18 @@ once approved MID creator will be notified.
 
 <tr><td>Material Type</td><td>{{ $req->mat_type }}  </td></tr>
 <tr><td>Brand</td><td>{{ $req->brand }}</td></tr>
-<tr><td>Requested By</td><td>{{ $user->name }}</td></tr>
-<tr><td>Requestor Email</td><td>{{ $user->email }}</td></tr>
-<tr><td>Company </td><td>{{ $user->company }}</td></tr>
+<tr><td>Requested By</td><td>{{ $req->user->name }}</td></tr>
+<tr><td>Requestor Email</td><td>{{ $req->user->email }}</td></tr>
+<tr><td>Company </td><td>{{ $req->user->company }}</td></tr>
+<tr><td colspan='2' style="text-align:center"><b>     MID CREATOR </b></td></tr>
+<tr><td>Email </td><td>{{ $conf->creator }}</td></tr>
 <tr><td colspan='2' style="text-align:center"><b>     APPROVER</b></td></tr>
-<tr><td>Name </td><td>{{ $conf->name }}</td></tr>
-<tr><td>Email </td><td>{{ $conf->email }}</td></tr>
+<tr><td>Name </td><td>{{ $user->name }}</td></tr>
+<tr><td>Email </td><td>{{ $user->email }}</td></tr>
 </tbody >
 </table>
+<p>To approve now click links below </p>
+
 <br>
 <br>
 <p>

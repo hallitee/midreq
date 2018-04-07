@@ -10,7 +10,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\config;
 
-class NewRequestEmail extends Mailable
+class approvalNotifier extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -19,8 +19,8 @@ class NewRequestEmail extends Mailable
      *
      * @return void
      */
-	 public $req, $user, $conf;
-    public function __construct(req $b,User $c,User $d)
+	  public $req, $user, $conf;
+    public function __construct(req $b,User $c,config $d)
     {
         //
 		$this->req = $b;
@@ -35,15 +35,11 @@ class NewRequestEmail extends Mailable
      */
     public function build()
     {
-		/*$cemail = [];
-			if($this->conf->hod!=null || $this->conf->hod!=""){
-				//array_push($cemail, $this->copi->copi);
-				$cemail = preg_split("/[;,\s]+/", $this->conf->hod);
-			}		*/
-        $address = 'helpdesk@esrnl.com';
+       $address = 'helpdesk@esrnl.com';
 		$name = 'MID CODE';
-		$subject = 'NEW MID REQUEST';
-        return $this->view('email.newapp')
+		$subject = 'CREATE NEW MID CODE';
+        return $this->view('email.appreq')
+					->cc($this->conf->hod)
 					->from($address, $name)
 					->subject($subject)->with(['req'=>$this->req, 'user'=>$this->user,'conf'=>$this->conf]);
     }

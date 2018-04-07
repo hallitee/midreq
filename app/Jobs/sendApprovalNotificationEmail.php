@@ -13,10 +13,10 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use App\Http\Requests\groupReq;
 use Illuminate\Support\Facades\Mail;
-use App\mail\NewRequestEmail;
+use App\Mail\approvalNotifier;
 use App\Config;
 
-class SendNewRequestEmail implements ShouldQueue
+class sendApprovalNotificationEmail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -25,8 +25,8 @@ class SendNewRequestEmail implements ShouldQueue
      *
      * @return void
      */
-	 public $user, $req, $config;
-    public function __construct(req $c, User $d, User $e)
+	  public $user, $req, $config;
+    public function __construct(req $c, User $d, config $e)
     {
         //
 		$this->user = $d;
@@ -41,8 +41,6 @@ class SendNewRequestEmail implements ShouldQueue
      */
     public function handle()
     {
-       // echo "Success";
-	   echo $this->config->creator;
-		Mail::to($this->config->email)->send(new NewRequestEmail($this->req, $this->user, $this->config));
+		Mail::to($this->config->creator)->send(new approvalNotifier($this->req, $this->user, $this->config));
     }
 }

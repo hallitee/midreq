@@ -21,7 +21,7 @@ $desc = explode("\r\n", $req->descr)
 <h3>NEW MID CODE REQUEST</h3>
 <p>
 New MID creation request awaiting approval, please check MID monitor for duplication
-once approved MID creator will be notified.
+because once approved MID creator will be notified.
 </p>
 <table class='table2' style="width:30%">
 <thead>
@@ -53,6 +53,25 @@ once approved MID creator will be notified.
 </tbody >
 </table>
 <br>
+<p>To approve/unapprove now click links below </p>
+<p>
+<table>
+<tbody>
+<tr>	
+<td>
+	
+
+        <a href="{{ url('emailApp')."?id=".$req->id."&approval=1&approver=".$user->id."&creator=".$conf->id }}"><button type="submit"><u>APPROVE</u></button></a>
+	   </td>
+	   <td>
+
+        <a href="{{ url('emailApp')."?id=".$req->id."&approval=2&approver=".$user->id."&creator=".$conf->id }}"><button type="submit"><u>UNAPPROVE</u></button></a>	
+
+	   </td>
+	   </tr>
+	   </tbody>
+</table>
+	</p> 
 <br>
 <p>
 Thank You, 

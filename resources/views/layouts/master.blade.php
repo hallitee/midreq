@@ -99,15 +99,24 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
 
-                        <li>
-                            <a href="{{ url('home') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                        </li>
-						@if((Auth::check()) && Auth::user()->isAdmin())						
-						<li>
+						@if((Auth::check()) && Auth::user()->isAdmin())				
+		                        <li>
+									<a href="{{ url('home') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+								</li>
+                                <li>
+                                    <a href="#"><i class="fa fa-book fa-fw"></i>Requests<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-second-level">
+                                        <li>
+                                            <a href="{{ route('req.index') }}">Approve Requests</a>
+                                        </li>
+                                    </ul>
+              
+                                </li>								
+							<li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i>Master Config<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#"> Config Email <span class="fa arrow"></span></a>
+                                    <a href="#">MID Creator<span class="fa arrow"></span></a>
                                     <ul class="nav nav-third-level">
                                         <li>
                                             <a href="{{ route('config.create') }}">Create Email</a>
@@ -116,8 +125,24 @@
                                             <a href="{{ route('config.index') }}">Manage Emails</a>
                                         </li>
                                     </ul>
-                                    <!-- /.nav-third-level -->
-                                </li>                            
+                           
+                                </li>   
+                                <li>
+                                    <a href="#">Manage User<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a href="{{ route('user.create') }}">Create User</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('user.index') }}">Manage Users</a>
+                                        </li>
+                                    </ul>
+                           
+                                </li> 								
+								</ul>
+								</li>
+								
+								<!--				
 							<li>
                                     <a href="#"> Add Group <span class="fa arrow"></span></a>
                                     <ul class="nav nav-third-level">
@@ -128,9 +153,9 @@
                                             <a href="{{route('group.index')}}">Manage Group</a>
                                         </li>
                                     </ul>
-                                    <!-- /.nav-third-level -->
-                                </li>								
-                                <li>
+                                
+                                </li> 								
+                           <li>
                                     <a href="#"> Add Family <span class="fa arrow"></span></a>
                                     <ul class="nav nav-third-level">
                                         <li>
@@ -140,7 +165,7 @@
                                             <a href="{{ route('family.index') }}">Manage Families</a>
                                         </li>
                                     </ul>
-                                    <!-- /.nav-third-level -->
+                              
                                 </li>	
                                 <li>
                                     <a href="#"> Add Category <span class="fa arrow"></span></a>
@@ -152,7 +177,7 @@
                                             <a href="{{ route('category.index') }}">Manage Categories</a>
                                         </li>
                                     </ul>
-                                    <!-- /.nav-third-level -->
+                             
                                 </li>	
                                 <li>
                                     <a href="#"> Add Sub-Category<span class="fa arrow"></span></a>
@@ -164,35 +189,44 @@
                                             <a href="{{ route('subcategory.index') }}">Manage Sub-Category</a>
                                         </li>
                                     </ul>
-                                    <!-- /.nav-third-level -->
-                                </li>	
+                                  
+                                </li> -->
+								
+													
 								@elseif((Auth::check()) && Auth::user()->isApprover())
+		                        <li>
+									<a href="{{ url('home') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+								</li>								
                                 <li>
-                                    <a href="#">Requests<span class="fa arrow"></span></a>
+                                    <a href="#"><i class="fa fa-book fa-fw"></i>Requests<span class="fa arrow"></span></a>
                                     <ul class="nav nav-third-level">
                                         <li>
                                             <a href="{{ route('req.index') }}">Approve Requests</a>
                                         </li>
                                     </ul>
                                     <!-- /.nav-third-level -->
-                                </li>	
-								@else	
+                                </li>		
+								@elseif(Auth::check())	
+		                        <li>
+									<a href="{{ url('home') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+								</li>
                                 <li>
-                                    <a href="#">Requests<span class="fa arrow"></span></a>
+                                    <a href="#"><i class="fa fa-book fa-fw"></i>Requests<span class="fa arrow"></span></a>
                                     <ul class="nav nav-third-level">
                                         <li>
                                             <a href="{{ route('req.index') }}">View Requests</a>
                                         </li>
                                     </ul>
                                     <!-- /.nav-third-level -->
-                                </li>										
+                                </li>								
 								@endif								
 
-                            </ul>
+                          
                             <!-- /.nav-second-level -->
-                        </li>
+                       
 
                     </ul>
+					</li>
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>

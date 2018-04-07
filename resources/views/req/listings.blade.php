@@ -75,7 +75,7 @@
 			<b class="text-info">	AWAITING APPROVAL </b>
 			@endif
 	  </td> 
-      <td><a href="{{ route('req.edit', $l->id) }}"><button class="btn btn-info">Change</button></a></td>	         
+      <td><a href="{{ route('req.edit', $l->id) }}"><button class="btn btn-info">Details</button></a></td>	         
     </tr>
     @endforeach		
 	
