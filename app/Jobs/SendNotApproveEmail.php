@@ -13,10 +13,10 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use App\Http\Requests\groupReq;
 use Illuminate\Support\Facades\Mail;
-use App\mail\NewRequestEmail;
+use App\mail\NotApproveEmail;
 use App\Config;
 
-class SendNewRequestEmail implements ShouldQueue
+class SendNotApproveEmail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -43,6 +43,6 @@ class SendNewRequestEmail implements ShouldQueue
     {
        // echo "Success";
 	  // echo $this->config->creator;
-		Mail::to($this->config->email)->send(new NewRequestEmail($this->req, $this->user, $this->config));
+		Mail::to($this->req->user->email)->send(new NotApproveEmail($this->req, $this->user, $this->config));
     }
 }

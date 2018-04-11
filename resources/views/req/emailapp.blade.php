@@ -13,15 +13,18 @@
 @php
 $rd = "readonly";
 $app="";
-if($req->approve==1){
+if($req->approved==1){
 	$app = 'APPROVED';
+	$cls = "text-success";
 }
-elseif($req->approve==2){
+elseif($req->approved==2){
 	$app = 'UNAPPROVED';
+	$cls = "text-danger";	
 }
 else
 {
 	$app = 'AWAITING APPROVAL';
+	$cls = "text-primary";	
 	
 }
 @endphp
@@ -93,7 +96,12 @@ else
 						{!! Form::text('midCreator',$crt->creator,array('class' => 'input-md form-control', 'id'=>'brand', $rd)); !!}
 					</div>	
 					</div>						
-						
+						<div id="div_id_select" class="form-group required">
+						<label for="id_select"  class="control-label col-md-4  requiredField">Request Status<span class="asteriskField"></span> </label>
+						<div class="controls col-md-5 "  style="margin-bottom: 10px">
+						<b class="{{ $cls}}"> {{  $app  }}</b>
+					</div>	
+					</div>						
 
 						{!! Form::close() !!}
 				</div>

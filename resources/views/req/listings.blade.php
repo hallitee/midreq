@@ -8,7 +8,7 @@
       <th scope="col">Item Description</th>
       <th scope="col">Date Created</th>	  
       <th scope="col">Created by</th>    
-      <th scope="col">MID Creator ({{Auth::user()->company}})</th>  	  
+      <th scope="col">Family</th>  	  
       <th scope="col">Status</th>	  
       <th scope="col">Approve</th>	 	       
     </tr>
@@ -18,7 +18,8 @@
       <th scope="col">Item Type</th>    
       <th scope="col">Item Description</th>
       <th scope="col">Date Created</th>    
-      <th scope="col">Approval Status</th>	  
+      <th scope="col">Approval Status</th>	 
+      <th scope="col">Family</th>		  
       <th scope="col">View</th>	 	        
     </tr>		
 	@endif
@@ -39,7 +40,7 @@
 	  </td>
       <td>{{ $l->created_at }}</td>	  
 	  <td scope="row">{{ $l->user->email}}</td>
-      <td>{{$crt->creator }}</td>		  
+      <td>{{$l->subcatname }}</td>		  
       
       <td>@if($l->approved==1)
 	       <b class="text-success">  APPROVED </b>
@@ -49,6 +50,7 @@
 			<b class="text-info">	AWAITING APPROVAL </b>
 			@endif
 		</td> 
+		
       <td><a href="{{ route('req.edit', $l->id) }}"><button class="btn btn-info">Change</button></a></td>	         
     </tr>
     @endforeach
@@ -75,6 +77,7 @@
 			<b class="text-info">	AWAITING APPROVAL </b>
 			@endif
 	  </td> 
+	        <td>{{$l->subcatname }}</td>	
       <td><a href="{{ route('req.edit', $l->id) }}"><button class="btn btn-info">Details</button></a></td>	         
     </tr>
     @endforeach		

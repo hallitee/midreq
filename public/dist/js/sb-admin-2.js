@@ -7,25 +7,55 @@ $(function() {
     $('#side-menu').metisMenu();
 });
 
-
  $(document).ready(function(){	
-
+ 
+$("body").on('load', '#testImg', function(){
+	console.log(" Loaded "); 
+});
  console.log("started");
+  $("body").on('click', '#testBtn', function(){
+	  alert("I worked it out");
+	  $(this).hide();
+  })
+ $("body").on('click', '.updateReq', function(){
+	console.log(" clicked "); 
+	if($("#remarks").empty()){
+		console.log(" empty! "); 
+	}
+ });
 $("body").on('click', '.sltList', function(){
 	console.log($(this).text());
 	$("#myUL").hide();
 	 var txt;
-    if (confirm("The item is already created. Do you want to stop creating new MID Request.")) {
+        BootstrapDialog.confirm({
+            title: 'MID Information',
+            message: 'The item is already created, Do you still want to continue creating new MID Request ?',
+            type: BootstrapDialog.TYPE_PRIMARY, // <-- Default value is BootstrapDialog.TYPE_PRIMARY
+            closable: true, // <-- Default value is false
+            draggable: true, // <-- Default value is false
+            btnCancelLabel: 'Cancel!', // <-- Default value is 'Cancel',
+            btnOKLabel: 'Create MID!', // <-- Default value is 'OK',
+           //btnOKClass: 'btn-warning', // <-- If you didn't specify it, dialog type will be used,
+            callback: function(result) {
+                // result will be true if button was click, while it will be false if users close the dialog directly.
+                if(result) {
+                    window.location = "/req/create";
+                }else {
+                   window.location = "/home";
+                }
+            }
+        });
+   /* if (confirm("The item is already created. Do you want to stop creating new MID Request.")) {
         txt = "You pressed OK!";
 		window.location = "/home";
 		
     } else {
         txt = "You pressed Cancel!";
-    }
+    }*/
 	$("#itemType").val($(this).text());
 	console.log(txt);
 });
- 
+
 $("#itemType").on('keyup', function(){
 	  name = $(this).val(); 
 	  Ulist = $("#myUL");

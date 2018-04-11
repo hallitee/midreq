@@ -236,7 +236,12 @@
         </nav>
 		
 @yield('body')
+@if($t)
+<script type="text/javascript">
 
+
+</script>
+@endif
     </div>
     <!-- /#wrapper -->
 
@@ -255,7 +260,7 @@
     <script src="{{asset('data/morris-data.js')}}"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="{{asset('dist/js/sb-admin-2.js')}}"></script>
+    <script src="{{asset('dist/js/test.js')}}"></script>
     <script src="{{asset('dist/js/bootstrap-dialog.min.js')}}"></script>
 </body>
 

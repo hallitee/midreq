@@ -10,7 +10,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\config;
 
-class NewRequestEmail extends Mailable
+class NotApproveEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -42,8 +42,8 @@ class NewRequestEmail extends Mailable
 			}		*/
         $address = 'helpdesk@esrnl.com';
 		$name = 'MID CODE';
-		$subject = 'NEW MID REQUEST';
-        return $this->view('email.newapp')
+		$subject = 'MID REQUEST UNAPPROVED';
+        return $this->view('email.notreq')
 					->from($address, $name)
 					->subject($subject)->with(['req'=>$this->req, 'user'=>$this->user,'conf'=>$this->conf]);
     }

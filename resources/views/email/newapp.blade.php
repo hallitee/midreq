@@ -61,11 +61,11 @@ because once approved MID creator will be notified.
 <td>
 	
 
-        <a href="{{ url('emailApp')."?id=".$req->id."&approval=1&approver=".$user->id."&creator=".$conf->id }}"><button type="submit"><u>APPROVE</u></button></a>
+        <a href="{{ url('emailApp')."?id=".$req->id."&approval=1&approver=".$conf->id."&creator=".$user->id }}"><button type="submit"><u>APPROVE</u></button></a>
 	   </td>
 	   <td>
 
-        <a href="{{ url('emailApp')."?id=".$req->id."&approval=2&approver=".$user->id."&creator=".$conf->id }}"><button type="submit"><u>UNAPPROVE</u></button></a>	
+        <a href="{{ url('appRemarks')."?id=".$req->id."&approval=2&approver=".$conf->id."&creator=".$user->id }}"><button type="submit"><u>UNAPPROVE</u></button></a>	
 
 	   </td>
 	   </tr>

@@ -20,10 +20,10 @@ else{
 	$rd ="readonly";
 	
 }
-if($req->approve==1){
+if($req->approved==1){
 	$app = 'APPROVED';
 }
-elseif($req->approve==2){
+elseif($req->approved==2){
 	$app = 'UNAPPROVED';
 }
 else
@@ -39,7 +39,7 @@ else
 				@if(Auth::user()->isApprover()||Auth::user()->isAdmin())
                     <h1 class="page-header">Update Approval </h1>
 				@else
-					<h1 class="page-header">Update Request </h1>
+					<h1 class="page-header">View Request </h1>
 				@endif
                 </div>
                 <!-- /.col-lg-12 -->
@@ -78,6 +78,12 @@ else
 						{!! Form::text('brand',$req->brand,array('class' => 'input-md form-control', 'id'=>'brand', $rd)); !!}
 					</div>	
 					</div>	
+						<div id="div_id_select" class="form-group required">
+						<label for="id_select"  class="control-label col-md-4  requiredField">Sub Category<span class="asteriskField"></span> </label>
+						<div class="controls col-md-5 "  style="margin-bottom: 10px">
+						{!! Form::text('midCreator',$req->subcatname,array('class' => 'input-md form-control', 'id'=>'brand', $rd)); !!}
+					</div>	
+					</div>					
 					@if(Auth::user()->isApprover()||Auth::user()->isAdmin())
 						<div id="div_id_select" class="form-group required">
 						<label for="id_select"  class="control-label col-md-4  requiredField">Date Created<span class="asteriskField"></span> </label>
@@ -90,19 +96,21 @@ else
 						<div class="controls col-md-5 "  style="margin-bottom: 10px">
 						{!! Form::text('createdBy',$req->user->email,array('class' => 'input-md form-control', 'id'=>'brand', $rd)); !!}
 					</div>	
-					</div>	
-						<div id="div_id_select" class="form-group required">
-						<label for="id_select"  class="control-label col-md-4  requiredField">MID Creator<span class="asteriskField"></span> </label>
-						<div class="controls col-md-5 "  style="margin-bottom: 10px">
-						{!! Form::text('midCreator',$crt->creator,array('class' => 'input-md form-control', 'id'=>'brand', $rd)); !!}
-					</div>	
-					</div>						
+					</div>				
 						<div id="div_id_select" class="form-group required">
 						<label for="id_select"  class="control-label col-md-4  requiredField">Approved<span class="asteriskField"></span> </label>
 						<div class="controls col-md-5 "  style="margin-bottom: 10px">
-						{!! Form::select('approval',['1'=>'APPROVED', '2'=>'UNAPPROVED' ],'',array( 'class' => 'input-md form-control', 'id'=>'mainCat')); !!}
+						{!! Form::select('approval',['1'=>'APPROVED', '2'=>'UNAPPROVED' ],$req->approved,array( 'class' => 'input-md form-control', 'id'=>'mainCat')); !!}
 						</div>	
 					</div>	
+					@if($req->approved == 0)
+						<div id="div_id_select" class="form-group required">
+						<label for="id_select"  class="control-label col-md-4  requiredField">Remarks<span class="asteriskField"></span> </label>
+						<div class="controls col-md-5 "  style="margin-bottom: 10px">
+						{!! Form::textarea('remarks','',array('size'=>'20x3', 'class' => 'input-md form-control', 'id'=>'remarks', 'required')); !!}
+					</div>	
+					</div>		
+					@endif					
 					@else
 						<div id="div_id_select" class="form-group required">
 						<label for="id_select"  class="control-label col-md-4  requiredField">Status<span class="asteriskField"></span> </label>
@@ -115,9 +123,13 @@ else
 						<div id="div_id_select" class="form-group required">
 						<label for="id_select"  class="control-label col-md-4  requiredField"><span class="asteriskField"></span> </label>
 						@if(Auth::user()->isApprover()||Auth::user()->isAdmin())
+							@if($req->approved==1)
+								
+							@else
 						<div class="controls col-md-3 "  style="margin-bottom: 10px">
-						{!! Form::submit('SUBMIT', array('class'=>'btn btn-info')); !!}
+						{!! Form::submit('SUBMIT', array('class'=>'btn btn-info updateReq')); !!}
 						</div>	
+						@endif
 						@endif						
 						<div class="controls col-md-2 "  style="margin-bottom: 10px">
 						<a href="{{route('req.index')}}"><button type="button" class="btn btn-info">BACK</button></a>
